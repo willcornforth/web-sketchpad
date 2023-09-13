@@ -11,9 +11,6 @@ body {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-
-    width: 352px;
-    height: 352px;
 }
 
 .grid-box {
