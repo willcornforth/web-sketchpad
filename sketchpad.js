@@ -37,9 +37,11 @@ addEventListener("mousedown", (event) => {
         {
             case 0:
                 drawEnabled = !drawEnabled;
+                eraseEnabled = 0;
                 break;
             case 2:
                 eraseEnabled = !eraseEnabled;
+                drawEnabled = 0;
                 break;
         }
 
@@ -51,6 +53,9 @@ addEventListener("mouseover", (event) => {
 
     if(event.target.classList.contains('grid-box') && drawEnabled) {
         event.target.style.backgroundColor = 'black';
+    } 
+    else if(event.target.classList.contains('grid-box') && eraseEnabled) {
+        event.target.style.backgroundColor = 'white';
     }
 
 });
