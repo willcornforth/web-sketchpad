@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0 32%;
+}
+
+.grid {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    width: 352px;
+    height: 352px;
+}
+
+.grid-box {
+    padding: 10px;
+    background-color: aqua;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.grid-box:hover {
+    background-color: aliceblue;
+}
