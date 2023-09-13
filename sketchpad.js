@@ -4,6 +4,9 @@ console.log("Sketchpad 13/09/23")
 const BOX_SIZE = 22;
 const GRID_SIZE = 16;
 
+let drawEnabled = 0;
+let eraseEnabled = 0;
+
 function adjustGridSize(grid, boxSize, gridSize)
 {
     grid.style.width = grid.style.height = (boxSize * gridSize + "px");
@@ -26,5 +29,30 @@ function setupGrid()
         grid.appendChild(gridBox);
     }
 }
+
+addEventListener("mousedown", (event) => {
+
+    if(event.target.classList.contains('grid-box')) {
+        switch (event.button)
+        {
+            case 0:
+                drawEnabled = !drawEnabled;
+                break;
+            case 2:
+                eraseEnabled = !eraseEnabled;
+                break;
+        }
+
+    }
+
+});
+
+addEventListener("mouseover", (event) => {
+
+    if(event.target.classList.contains('grid-box') && drawEnabled) {
+        event.target.style.backgroundColor = 'black';
+    }
+
+});
 
 setupGrid();
