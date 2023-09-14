@@ -2,8 +2,8 @@ console.log("Sketchpad 13/09/23")
 
 // Each grid box is 22px wide/tall.
 const BOX_SIZE = 22;
-const GRID_SIZE = 16;
 
+let gridSize = 16;
 let drawEnabled = 0;
 let eraseEnabled = 0;
 
@@ -13,16 +13,18 @@ function adjustGridSize(grid, boxSize, gridSize)
     console.log("Calculated width: " + grid.style.width + " height: " + grid.style.height);
 }
 
-function setupGrid()
+function setupGrid(gridSize = 16)
 {
     const gridContainer = document.querySelector("#grid-container");
     const grid = document.createElement("div");
+
+    grid.id = "grid";
     grid.classList.add("grid");
-    adjustGridSize(grid, BOX_SIZE, GRID_SIZE);
+    adjustGridSize(grid, BOX_SIZE, gridSize);
 
     gridContainer.appendChild(grid);
 
-    for(let i = 0; i < Math.pow(GRID_SIZE, 2); i++)
+    for (let i = 0; i < Math.pow(gridSize, 2); i++)
     {
         const gridBox = document.createElement("div");
         gridBox.classList.add("grid-box");
@@ -30,9 +32,17 @@ function setupGrid()
     }
 }
 
-addEventListener("mousedown", (event) => {
+function removeGrid()
+{
+    // Clears contents of container.
+    let gc = document.querySelector("#grid-container");
+    gc.textContent = "";
+}
 
-    if(event.target.classList.contains('grid-box')) {
+addEventListener("mousedown", (event) => 
+{
+
+    if (event.target.classList.contains('grid-box')) {
         switch (event.button)
         {
             case 0: // Mouse 1
@@ -49,15 +59,27 @@ addEventListener("mousedown", (event) => {
 
 });
 
-addEventListener("mouseover", (event) => {
-
-    if(event.target.classList.contains('grid-box') && drawEnabled) {
+addEventListener("mouseover", (event) => 
+{
+    if (event.target.classList.contains('grid-box') && drawEnabled) {
         event.target.style.backgroundColor = 'black';
     } 
-    else if(event.target.classList.contains('grid-box') && eraseEnabled) {
+    else if (event.target.classList.contains('grid-box') && eraseEnabled) {
         event.target.style.backgroundColor = 'white';
     }
 
 });
+
+document.querySelector("#btn-grid-size").onclick = () => 
+{
+   gridSize = parseInt( prompt("Type a grid size in the box below. (16 by default)") );
+
+   if (gridSize > 0 && Number.isInteger(gridSize) && gridSize < 100)
+   {
+    // Reinitialise grid with new size.
+    removeGrid();
+    setupGrid(gridSize);
+   }
+}
 
 setupGrid();
