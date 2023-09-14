@@ -13,6 +13,20 @@ function adjustGridSize(grid, boxSize, gridSize)
     console.log("Calculated width: " + grid.style.width + " height: " + grid.style.height);
 }
 
+function randomColour()
+{
+    let color = '#';
+    const digits = '0123456789ABCDEF';
+
+    for (let i = 0; i < 6; i++) 
+    {
+      const randomDigit = Math.floor(Math.random() * 16);
+      color += digits[randomDigit];
+    }
+
+    return color;
+}
+
 function setupGrid(gridSize = 16)
 {
     const gridContainer = document.querySelector("#grid-container");
@@ -61,8 +75,14 @@ addEventListener("mousedown", (event) =>
 
 addEventListener("mouseover", (event) => 
 {
-    if (event.target.classList.contains('grid-box') && drawEnabled) {
-        event.target.style.backgroundColor = 'black';
+    if (event.target.classList.contains('grid-box') && drawEnabled) 
+    {
+        const enableRGB = document.querySelector("#enable-rgb")
+        
+        if(enableRGB.checked)
+            event.target.style.backgroundColor = randomColour();
+        else    
+            event.target.style.backgroundColor = 'black';
     } 
     else if (event.target.classList.contains('grid-box') && eraseEnabled) {
         event.target.style.backgroundColor = 'white';
