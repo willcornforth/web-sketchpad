@@ -35,11 +35,11 @@ addEventListener("mousedown", (event) => {
     if(event.target.classList.contains('grid-box')) {
         switch (event.button)
         {
-            case 0:
+            case 0: // Mouse 1
                 drawEnabled = !drawEnabled;
                 eraseEnabled = 0;
                 break;
-            case 2:
+            case 1: // Mouse 3
                 eraseEnabled = !eraseEnabled;
                 drawEnabled = 0;
                 break;
