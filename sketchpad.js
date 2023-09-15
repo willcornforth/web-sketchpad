@@ -55,7 +55,6 @@ function removeGrid()
 
 addEventListener("mousedown", (event) => 
 {
-
     if (event.target.classList.contains('grid-box')) {
         switch (event.button)
         {
@@ -70,7 +69,6 @@ addEventListener("mousedown", (event) =>
         }
 
     }
-
 });
 
 addEventListener("mouseover", (event) => 
@@ -79,10 +77,16 @@ addEventListener("mouseover", (event) =>
     {
         const enableRGB = document.querySelector("#enable-rgb")
         
-        if(enableRGB.checked)
+        if(enableRGB.checked) 
+        {
             event.target.style.backgroundColor = randomColour();
-        else    
+            event.target.style.opacity = '1.0';
+        }
+        else 
+        {    
             event.target.style.backgroundColor = 'black';
+            event.target.style.opacity -= '-0.1';
+        }
     } 
     else if (event.target.classList.contains('grid-box') && eraseEnabled) {
         event.target.style.backgroundColor = 'white';
